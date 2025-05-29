@@ -107,7 +107,7 @@ const Login = () => {
             onClick={() => setIsSignup(!isSignup)}
           >
             {isSignup ? "Log In" : "Sign Up"}
-          </span>
+          </span>                
         </p>
       </div>
     </div>
