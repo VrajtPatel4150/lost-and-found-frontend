@@ -23,7 +23,7 @@ const ManageUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/users");
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users`);
         setUsers(res.data);
       } catch (err) {
         console.error("Error fetching users:", err);
@@ -44,7 +44,7 @@ const ManageUsers = () => {
     if (!window.confirm("Are you sure you want to delete this student?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/users/${id}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/users/${id}`);
       setUsers((prev) => prev.filter((u) => u._id !== id));
     } catch (err) {
       alert("Failed to delete user.");

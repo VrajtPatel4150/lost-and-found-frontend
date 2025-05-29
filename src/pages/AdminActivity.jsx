@@ -19,7 +19,7 @@ const AdminActivity = () => {
 
   const fetchAllItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/items");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/items`);
       setItems(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
       console.error("Error fetching item history", err);
@@ -28,7 +28,7 @@ const AdminActivity = () => {
 
   const approveItem = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/items/approve/${id}`);
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/items/approve/${id}`);
       fetchAllItems();
     } catch (err) {
       alert("Approval failed");
@@ -37,7 +37,7 @@ const AdminActivity = () => {
 
   const rejectItem = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/items/reject/${id}`);
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/items/reject/${id}`);
       fetchAllItems();
     } catch (err) {
       alert("Rejection failed");

@@ -26,7 +26,7 @@ const ReportItem = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    const response = await axios.post("http://localhost:5000/api/upload", formData, {
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/upload`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
       onUploadProgress: (progressEvent) => {
         const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -47,7 +47,7 @@ const ReportItem = () => {
         imageUrl = await handleImageUpload(imageFile);
       }
 
-      await axios.post("http://localhost:5000/api/items", {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/items`, {
         ...form,
         imageUrl: imageUrl,
         userId: user._id,

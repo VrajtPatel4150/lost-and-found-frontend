@@ -26,7 +26,7 @@ const Login = () => {
 
       const user = userCred.user;
 
-      const response = await axios.post("http://localhost:5000/api/auth/firebase-auth", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/firebase-auth`, {
         uid: user.uid,
         email: user.email,
         displayName: user.displayName || "",
@@ -49,7 +49,7 @@ const Login = () => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
 
-      const response = await axios.post("http://localhost:5000/api/auth/firebase-auth", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/auth/firebase-auth`, {
         uid: user.uid,
         email: user.email,
         displayName: user.displayName,

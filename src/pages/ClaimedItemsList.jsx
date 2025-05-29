@@ -11,7 +11,7 @@ const ClaimedItemsList = () => {
 
   const fetchClaimedItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/items/claimed");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/items/claimed`);
       setItems(res.data);
     } catch (err) {
       console.error("Error fetching claimed items:", err);

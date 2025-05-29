@@ -18,7 +18,7 @@ const PublicLostItemsList = () => {
 
   const fetchItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/items");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/items`);
       const data = Array.isArray(res.data)
         ? res.data.filter((item) =>
             item.type === "lost" &&

@@ -21,7 +21,7 @@ const FoundItemsList = () => {
 
   const fetchItems = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/items");
+      const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/items`);
       const data = Array.isArray(res.data)
         ? res.data.filter((item) => item.type === "found" && item.approved)
         : [];
@@ -37,13 +37,13 @@ const FoundItemsList = () => {
     if (!claimerEmail) return;
 
     try {
-      await axios.post("http://localhost:5000/api/claims", {
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/claims`, {
         itemName: item.name,
         ownerEmail: item.ownerEmail,
         claimerEmail,
       });
 
-      await axios.put(`http://localhost:5000/api/items/${item._id}`, {
+      await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/items/${item._id}`, {
         status: "claimed",
         approved: true,
         claimedBy: claimerEmail,
@@ -61,7 +61,7 @@ const FoundItemsList = () => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/items/${itemId}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/items/${itemId}`);
       fetchItems();
     } catch (err) {
       console.error("Delete failed", err);
